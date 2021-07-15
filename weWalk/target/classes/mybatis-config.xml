@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+
+<configuration>
+
+	<typeAliases>		
+		<typeAlias alias="user" type="com.weWalk.together.vo.UserVO" />
+		<typeAlias alias="parking" type="com.weWalk.together.vo.ParkVO" />
+		<typeAlias alias="code" type="com.weWalk.together.vo.CodeVO" />
+		<typeAlias alias="search" type="com.weWalk.together.vo.SearchVO" />
+	</typeAliases>
+
+</configuration>

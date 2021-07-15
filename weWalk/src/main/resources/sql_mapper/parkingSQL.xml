@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parking">
+
+	<select id="parkingTotalList" parameterType="search" resultType="parking">
+	 SELECT 
+	 	* 
+	 FROM 
+	 	PARKING_INFO
+	</select>
+
+	<select id="parkingList" parameterType="search" resultType="parking">
+	 SELECT 
+	 	* 
+	 FROM 
+	 	PARKING_INFO
+	 WHERE 
+	 	PRKPLCENM NOT LIKE CONCAT('%',#{keyWord},'%')
+	</select>
+	
+	<select id="parkingSearchList" parameterType="search" resultType="parking">
+	 SELECT 
+	 	* 
+	 FROM 
+	 	PARKING_INFO
+	 WHERE 
+	 	PRKPLCENM LIKE CONCAT('%',#{keyWord},'%')
+	</select>
+	
+	<select id="parking_detail_info" parameterType="String" resultType="parking">
+	 SELECT 
+	 	PRKPLCENO
+	 	,PRKPLCENM
+	 	,ID
+	 	,RDNMADR
+	 	,LNMADR
+	 	,PRKCMPRT
+	 	,BASICTIME
+	 	,BASICCHARGE
+	 	,DAYCMMTKT
+	 	,MONTHCMMTKT
+	 	,SPCMNT
+	 	,LATITUDE
+	 	,HARDNESS
+	 	,PARKIMG
+	 	,COMENT
+	 	,DEL_YN
+	 	,CREATE_DATE
+	 	,APVL_DATE
+	 	,(SELECT CODE_DTL_NM FROM CMM_CD_DTL B WHERE B.CODE = 'PRK_TYPE_CD' AND B.CODE_DTL_VAL = A.PRK_TYPE_CD ) AS PRK_TYPE_CD
+	 	,(SELECT CODE_DTL_NM FROM CMM_CD_DTL B WHERE B.CODE = 'PRK_PLC_CD' AND B.CODE_DTL_VAL = A.PRK_PLC_CD ) AS PRK_PLC_CD
+	 	,(SELECT CODE_DTL_NM FROM CMM_CD_DTL B WHERE B.CODE = 'PRK_APVL_CD' AND B.CODE_DTL_VAL = A.PRK_APVL_CD ) AS PRK_APVL_CD
+	 	,(SELECT CODE_DTL_NM FROM CMM_CD_DTL B WHERE B.CODE = 'PRK_METPAY_CD' AND B.CODE_DTL_VAL = A.PRK_METPAY_CD ) AS PRK_METPAY_CD
+	 FROM 
+	 	PARKING_INFO A
+	 WHERE 1=1
+	 	AND DEL_YN = 'Y'
+	 	AND PRKPLCENO = #{pkno}
+	</select>
+</mapper>

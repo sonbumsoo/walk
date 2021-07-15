@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<select id="userLogin" parameterType="user" resultType="user">
+		SELECT 
+			*
+		FROM 
+			USERS
+		WHERE 1=1
+			AND	ID = #{id} 
+			AND PW = #{password}
+	</select>
+	
+	<select id="login" parameterType="user" resultType="user">
+		SELECT 
+			*
+		FROM 
+			USERS
+		WHERE 1=1
+			AND	ID = #{id} 
+			AND PW = #{password}
+	</select>
+	
+	<select id="idOverlap" parameterType="String" resultType="String">
+		SELECT *
+		FROM USERS
+		WHERE ID = #{id}
+	</select>
+	
+
+	<insert id="singUser" parameterType="user">
+		INSERT INTO USERS (
+			ID
+			,PW
+			,NAME
+			,PHONE_NUM
+			,ADDR
+			,EMAIL
+			,MEMBER_TYPE_CD
+			,AUTHKEY
+			,MEMBER_STATE_CD
+			,CREATE_DATE
+			) VALUES(
+			#{id}
+			,#{password}
+			,#{name}
+			,#{phone_num}
+			,#{addr}
+			,#{email}
+			,#{member_type_cd}
+			,#{authkey}
+			,'001'
+			,SYSDATE()
+			)
+	</insert>
+</mapper>
