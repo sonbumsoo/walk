@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common">
+
+	<select id="codeList" parameterType="String" resultType="code">
+	 SELECT 
+	 	CODE
+	 	,CODE_DTL_VAL
+	 	,CODE_DTL_NM
+	 	,COMMENT
+	 	,CREATE_DATE
+	 	,MOD_DATE
+	 	,DEL_YN
+	 FROM 
+	 	CMM_CD_DTL
+	 WHERE 1=1
+	 	AND DEL_YN = 'Y'
+	 	AND CODE = #{code}
+	</select>
+
+
+</mapper>
